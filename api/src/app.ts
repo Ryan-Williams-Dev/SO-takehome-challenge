@@ -1,5 +1,5 @@
 import express, { Response, Request, NextFunction } from 'express';
-import cors from 'cors';
+const cors = require("cors");
 import { repos } from './routes/repos';
 import { terrible } from './middleware/terrible';
 import { AppError } from './models/AppError';
