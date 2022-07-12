@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import {Repo} from '../../api/src/models/Repo'
 import './App.css';
 
 export function App() {
+
+  const [data, setData] = useState<any>(null)
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedData = await axios.get('http://localhost:4000/repos')
+      setData(fetchedData)
+    }
+    
+    fetchData()
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>{data}</p>
+      
     </div>
   );
 }

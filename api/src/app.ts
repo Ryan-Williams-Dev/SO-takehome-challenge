@@ -1,5 +1,5 @@
 import express, { Response, Request, NextFunction } from 'express';
-import cors from 'cors';
+const cors = require("cors");
 import { repos } from './routes/repos';
 import { terrible } from './middleware/terrible';
 import { AppError } from './models/AppError';
@@ -8,6 +8,7 @@ import { AppError } from './models/AppError';
 const corsOptions = {
   methods: 'GET',
   allowedHeaders: 'Content-Type,Authorization',
+  "Access-Control-Allow-Origin": "http://localhost:3000"
 };
 
 export const app = express();
