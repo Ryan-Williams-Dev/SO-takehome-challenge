@@ -8,6 +8,7 @@ import { AppError } from './models/AppError';
 const corsOptions = {
   methods: 'GET',
   allowedHeaders: 'Content-Type,Authorization',
+  "Access-Control-Allow-Origin": "http://localhost:3000"
 };
 
 export const app = express();
