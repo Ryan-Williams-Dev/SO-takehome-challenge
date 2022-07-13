@@ -22,7 +22,6 @@ export function App() {
         console.log(err)
       })
   }, [])
-  
 
   return (
     <div className="App">
