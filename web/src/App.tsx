@@ -21,6 +21,7 @@ export function App() {
     fetchData()
       .catch(err => {
         console.log(err)
+        alert("Error, please try again shortly")
       })
   }, [])
 

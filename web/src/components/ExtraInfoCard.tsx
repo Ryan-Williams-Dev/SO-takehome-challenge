@@ -13,6 +13,7 @@ export default function ExtraInfoCard({repo}: ExtraInfoCardProps) {
 
   const [latestCommit, setLatestCommit] = useState<Commit | null>(null)
   const [readMe, setReadMe] = useState(null)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const fetchCommits = async () => {
@@ -28,44 +29,55 @@ export default function ExtraInfoCard({repo}: ExtraInfoCardProps) {
     fetchCommits()
     .catch(err => {
       console.log(err)
+      setError(err)
     })
     fecthReadMe()
     .catch(err => {
       console.log(err)
+      setError(err)
     })
   }, [])
   
   return (
     <>
-      <TableRow className="selected">
-        <TableCell>
-          <strong>Most Recent Commit</strong>
-        </TableCell>
-      </TableRow>
-      <TableRow className="selected">
-        <TableCell><strong>Date</strong></TableCell>
-        <TableCell><strong>Author</strong></TableCell>
-        <TableCell><strong>Message</strong></TableCell>
-      </TableRow>
-      <TableRow className="selected">
-        <TableCell>{latestCommit?.commit.author.date}</TableCell>
-        <TableCell>{latestCommit?.commit.author.name}</TableCell>
-        <TableCell>{latestCommit?.commit.message}</TableCell>
-      </TableRow>
-      <TableRow className="selected">
-        <TableCell>
-          <strong>Read Me</strong>
-        </TableCell>
-      </TableRow>
-      <TableRow className="selected">
-        <TableCell>
-          {readMe &&
-            <MuiMarkdown>
-              {readMe}
-            </MuiMarkdown>
-          }
-        </TableCell>
-      </TableRow>
+      {error && 
+        <TableRow>
+          <TableCell><strong>Error, no info feteched from Github</strong></TableCell>
+        </TableRow>
+      }
+      {!error &&
+      <>
+        <TableRow className="selected">
+          <TableCell>
+            <strong>Most Recent Commit</strong>
+          </TableCell>
+        </TableRow>
+        <TableRow className="selected">
+          <TableCell><strong>Date</strong></TableCell>
+          <TableCell><strong>Author</strong></TableCell>
+          <TableCell><strong>Message</strong></TableCell>
+        </TableRow>
+        <TableRow className="selected">
+          <TableCell>{latestCommit?.commit.author.date}</TableCell>
+          <TableCell>{latestCommit?.commit.author.name}</TableCell>
+          <TableCell>{latestCommit?.commit.message}</TableCell>
+        </TableRow>
+        <TableRow className="selected">
+          <TableCell>
+            <strong>Read Me</strong>
+          </TableCell>
+        </TableRow>
+        <TableRow className="selected">
+          <TableCell>
+            {readMe &&
+              <MuiMarkdown>
+                {readMe}
+              </MuiMarkdown>
+            }
+          </TableCell>
+        </TableRow>
+      </>
+      }
     </>
   )
 }
