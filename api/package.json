@@ -6,9 +6,9 @@
   "scripts": {
     "start": "set DEBUG=api & ts-node-dev -- ./src/index.ts",
     "test": "node -e \"console.log('No tests yet!')\"",
-    "lint": "eslint 'src/**/*.{js,ts}'",
-    "prettier": "prettier --list-different 'src/**/*.{js,ts}'",
-    "prettier-write": "prettier --write 'src/**/*.{js,ts}'"
+    "lint": "eslint src/**/*.{js,ts}",
+    "prettier": "prettier --list-different src/**/*.{js,ts}",
+    "prettier-write": "prettier --write src/**/*.{js,ts}"
   },
   "dependencies": {
     "cors": "^2.8.5",
