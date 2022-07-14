@@ -18,10 +18,15 @@ repos.get('/', async (_: Request, res: Response) => {
   const localDataRaw = await fs.readFile("data/repos.json");
   const localData = JSON.parse(localDataRaw);
 
-  const nonForkRepos = [...fetchedData, ...localData].filter((repo: Repo) => {
-    if (repo.fork === false) return repo;
-  });
-  
+  let nonForkRepos = []
+
+  if (fetchedData && localData) {
+      nonForkRepos = [...fetchedData, ...localData].filter((repo: Repo) => {
+       if (repo.fork === false) return repo;
+     });
+
+  }
+
   res.json(nonForkRepos);
 });
 
