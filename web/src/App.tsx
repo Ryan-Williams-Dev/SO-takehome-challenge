@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import {Repo} from '../../api/src/models/Repo'
+import {Repo} from './models/Repo'
 import './App.css';
 import List from './components/List';
+import "./styles.css"
 
 export function App() {
 

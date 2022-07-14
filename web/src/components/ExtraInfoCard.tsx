@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Repo } from "../../../api/src/models/Repo"
-import { Commit } from "../../../api/src/models/Commit"
+import { Repo } from "../models/Repo"
+import { Commit } from "../models/Commit"
 import { TableCell, TableRow } from "@mui/material"
 import MuiMarkdown from 'mui-markdown';
 
@@ -35,30 +35,29 @@ export default function ExtraInfoCard({repo}: ExtraInfoCardProps) {
     })
   }, [])
   
-  console.log(latestCommit)
   return (
     <>
-      <TableRow>
+      <TableRow className="selected">
         <TableCell>
           <strong>Most Recent Commit</strong>
         </TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow className="selected">
         <TableCell><strong>Date</strong></TableCell>
         <TableCell><strong>Author</strong></TableCell>
         <TableCell><strong>Message</strong></TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow className="selected">
         <TableCell>{latestCommit?.commit.author.date}</TableCell>
         <TableCell>{latestCommit?.commit.author.name}</TableCell>
         <TableCell>{latestCommit?.commit.message}</TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow className="selected">
         <TableCell>
           <strong>Read Me</strong>
         </TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow className="selected">
         <TableCell>
           {readMe &&
             <MuiMarkdown>

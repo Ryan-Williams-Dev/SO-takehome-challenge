@@ -1,6 +1,7 @@
-import { TableCell, TableRow } from "@mui/material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { Icon, TableCell, TableRow } from "@mui/material";
 import { useState } from "react";
-import { Repo } from "../../../api/src/models/Repo"
+import { Repo } from "../models/Repo"
 import ExtraInfoCard from "./ExtraInfoCard";
 
 type ListItemProps = {
@@ -18,12 +19,13 @@ export default function ListItem({repo, languageFilter}: ListItemProps) {
     <>
       {visible &&
         <>
-          <TableRow onClick={() => setExpanded(!expanded)} >
+          <TableRow onClick={() => setExpanded(!expanded)} className={`${expanded ? 'selected' : ''} expandable`}>
             <TableCell>{name}</TableCell>
             <TableCell>{description}</TableCell> 
             <TableCell>{language}</TableCell>
             <TableCell>{forks}</TableCell>
             <TableCell>{created_at}</TableCell>
+            <TableCell><Icon>{expanded ? <ExpandLess /> : <ExpandMore />}</Icon></TableCell>
           </TableRow>
           {expanded &&
             <ExtraInfoCard repo={repo} />

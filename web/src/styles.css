@@ -1,0 +1,9 @@
+.selected {
+  background-color: lightgray;
+}
+
+.expandable:hover {
+  cursor: context-menu;
+  z-index: 2;
+  background-color: lightsalmon;
+}

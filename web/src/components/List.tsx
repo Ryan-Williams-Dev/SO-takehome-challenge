@@ -1,6 +1,6 @@
 import { MenuItem, Select, SelectChangeEvent, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useState } from "react";
-import { Repo } from "../../../api/src/models/Repo";
+import { Repo } from "../models/Repo";
 import ListItem from "./ListItem";
 
 type ListProps = {
@@ -29,6 +29,7 @@ export default function List({data}: ListProps) {
           </TableCell>
           <TableCell>Forks count</TableCell>
           <TableCell>Created At</TableCell>
+          <TableCell>Expand</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
