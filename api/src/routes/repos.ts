@@ -1,4 +1,4 @@
-import { Router, Request, Response, json } from 'express';
+import { Router, Request, Response } from 'express';
 import { Repo } from '../models/Repo';
 const fetch = require('node-fetch');
 const fs = require('fs').promises;
@@ -12,21 +12,21 @@ repos.get('/', async (_: Request, res: Response) => {
 
   // TODO: See README.md Task (A). Return repo data here. You’ve got this!
 
-  const dataFetch = await fetch('https://api.github.com/users/silverorange/repos');
+  const dataFetch = await fetch(
+    'https://api.github.com/users/silverorange/repos'
+  );
   const fetchedData = await dataFetch.json();
 
-  const localDataRaw = await fs.readFile("data/repos.json");
+  const localDataRaw = await fs.readFile('data/repos.json');
   const localData = JSON.parse(localDataRaw);
 
-  let nonForkRepos = []
+  let nonForkRepos = [];
 
   if (fetchedData && localData) {
-      nonForkRepos = [...fetchedData, ...localData].filter((repo: Repo) => {
-       if (repo.fork === false) return repo;
-     });
-
+    nonForkRepos = [...fetchedData, ...localData].filter((repo: Repo) => {
+      return repo.fork === false ? true : false;
+    });
   }
 
   res.json(nonForkRepos);
 });
-
